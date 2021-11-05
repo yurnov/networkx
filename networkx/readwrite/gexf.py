@@ -22,7 +22,7 @@ import time
 import networkx as nx
 from networkx.utils import open_file
 
-from xml.etree.ElementTree import (
+from defusedxml.etree.ElementTree import (
     Element,
     ElementTree,
     SubElement,

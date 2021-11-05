@@ -6,8 +6,9 @@ Read and write graphs in GraphML format.
 
 .. warning::
 
-    This parser uses the standard xml library present in Python, which is
-    insecure - see :doc:`library/xml` for additional information.
+    This parser uses the defused version of standard xml library present in Python,
+    which may be insecure - see :doc:`library/xml` and https://github.com/tiran/defusedxml 
+    for additional information.
     Only parse GraphML files you trust.
 
 This implementation does not support mixed graphs (directed and unidirected
@@ -470,7 +471,7 @@ class GraphMLWriter(GraphML):
         edge_id_from_attribute=None,
     ):
         self.construct_types()
-        from xml.etree.ElementTree import Element
+        from defusedxml.etree.ElementTree import Element
 
         self.myElement = Element
 
@@ -495,7 +496,7 @@ class GraphMLWriter(GraphML):
             self.add_graph_element(graph)
 
     def __str__(self):
-        from xml.etree.ElementTree import tostring
+        from defusedxml.etree.ElementTree import tostring
 
         if self.prettyprint:
             self.indent(self.xml)
@@ -659,7 +660,7 @@ class GraphMLWriter(GraphML):
             self.add_graph_element(G)
 
     def dump(self, stream):
-        from xml.etree.ElementTree import ElementTree
+        from defusedxml.etree.ElementTree import ElementTree
 
         if self.prettyprint:
             self.indent(self.xml)
@@ -846,7 +847,7 @@ class GraphMLReader(GraphML):
         self.edge_ids = {}  # dict mapping (u,v) tuples to edge id attributes
 
     def __call__(self, path=None, string=None):
-        from xml.etree.ElementTree import ElementTree, fromstring
+        from defusedxml.etree.ElementTree import ElementTree, fromstring
 
         if path is not None:
             self.xml = ElementTree(file=path)

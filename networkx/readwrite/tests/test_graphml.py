@@ -1138,7 +1138,7 @@ class TestWriteGraphML(BaseGraphML):
         self.simple_directed_fh.seek(0)
 
     def test_write_read_attribute_named_key_ids_graphml(self):
-        from xml.etree.ElementTree import parse
+        from defusedxml.etree.ElementTree import parse
 
         G = self.attribute_named_key_ids_graph
         fh = io.BytesIO()
@@ -1183,7 +1183,7 @@ class TestWriteGraphML(BaseGraphML):
         assert all(e1 == e2 for (e1, e2) in zip(H.edges, J.edges))
 
     def test_write_read_attribute_numeric_type_graphml(self):
-        from xml.etree.ElementTree import parse
+        from defusedxml.etree.ElementTree import parse
 
         G = self.attribute_numeric_type_graph
         fh = io.BytesIO()
@@ -1322,7 +1322,7 @@ class TestWriteGraphML(BaseGraphML):
         os.unlink(fname)
 
     def test_write_generate_edge_id_from_attribute(self):
-        from xml.etree.ElementTree import parse
+        from defusedxml.etree.ElementTree import parse
 
         G = nx.Graph()
         G.add_edges_from([("a", "b"), ("b", "c"), ("a", "c")])
@@ -1366,7 +1366,7 @@ class TestWriteGraphML(BaseGraphML):
         os.unlink(fname)
 
     def test_multigraph_write_generate_edge_id_from_attribute(self):
-        from xml.etree.ElementTree import parse
+        from defusedxml.etree.ElementTree import parse
 
         G = nx.MultiGraph()
         G.add_edges_from([("a", "b"), ("b", "c"), ("a", "c"), ("a", "b")])
